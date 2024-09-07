@@ -12,14 +12,18 @@ def fetch_emails(email_account):
 
     # Поиск всех сообщений в почтовом ящике
     status, messages = mail.search(None, 'ALL')
-
+    EmailMessage.objects.all().delete()
     for num in messages[0].split():
         status, data = mail.fetch(num, '(RFC822)')
         msg = email.message_from_bytes(data[0][1])
 
-        subject, encoding = decode_header(msg["Subject"])[0]
-        if isinstance(subject, bytes):
-            subject = subject.decode(encoding or 'utf-8')
+        # Проверка, что заголовок 'Subject' не None
+        if msg["Subject"] is not None:
+            subject, encoding = decode_header(msg["Subject"])[0]
+            if isinstance(subject, bytes):
+                subject = subject.decode(encoding or 'utf-8')
+        else:
+            subject = "(Без темы)"  # или можно задать другое значение по умолчанию
 
         from_email = msg.get("From")
         date = msg.get("Date")
@@ -48,3 +52,4 @@ def fetch_emails(email_account):
         )
 
     mail.logout()
+

@@ -16,7 +16,7 @@ class EmailAccount(models.Model):
 
 class EmailMessage(models.Model):
     email_account = models.ForeignKey(EmailAccount, on_delete=models.CASCADE, related_name='messages')
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255, null=True, blank=True)
     send_date = models.DateTimeField()
     received_date = models.DateTimeField()
     body = models.TextField()
