@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Messages</title>
+</head>
+<body>
+    <h1>Email Messages</h1>
+    <div id="progress-bar" style="width: 100%; background-color: #f3f3f3;">
+        <div id="progress-bar-fill" style="width: 0%; height: 25px; background-color: #4caf50;"></div>
+    </div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Subject</th>
+            <th>Send Date</th>
+            <th>Received Date</th>
+            <th>Body</th>
+        </tr>
+        {% for message in messages %}
+        <tr>
+            <td>{{ message.id }}</td>
+            <td>{{ message.subject }}</td>
+            <td>{{ message.send_date }}</td>
+            <td>{{ message.received_date }}</td>
+            <td>{{ message.body }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        // Имитация процесса загрузки и чтения сообщений
+        function updateProgressBar(percentage) {
+            document.getElementById('progress-bar-fill').style.width = percentage + '%';
+        }
+
+        // Здесь можно обновлять прогресс-бар по мере выполнения задач
+        updateProgressBar(50);  // например, на 50% выполнено
+    </script>
+</body>
+</html>
