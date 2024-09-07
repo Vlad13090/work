@@ -20,7 +20,7 @@ class EmailMessage(models.Model):
     send_date = models.DateTimeField()
     received_date = models.DateTimeField()
     body = models.TextField()
-    attachments = models.JSONField(default=list)  # хранение списка прикрепленных файлов
+    attachments = models.JSONField(default=list)
 
     def __str__(self):
         return self.subject

@@ -20,10 +20,8 @@
     </tr>
     {% for message in messages %}
         <tr>
-            <td>{{ message.id }}</td>
-            {% if message.subject %}
-                <td>{{ message.subject }}</td>
-            {% endif %}
+            <td>{{ message.id }}</td
+            <td>{{ message.subject }}</td>
             <td>{{ message.send_date }}</td>
             <td>{{ message.received_date }}</td>
             <td>{{ message.body }}</td>
